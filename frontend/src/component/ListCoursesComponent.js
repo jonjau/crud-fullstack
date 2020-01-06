@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import CourseDataService from '../service/CourseDataService';
+import React, { Component } from "react";
+import CourseDataService from "../service/CourseDataService";
 
 class ListCoursesComponent extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class ListCoursesComponent extends Component {
     this.state = {
       courses: [],
       message: null
-    }
+    };
     this.refreshCourses = this.refreshCourses.bind(this);
     this.deleteCourseClicked = this.deleteCourseClicked.bind(this);
     this.updateCourseClicked = this.updateCourseClicked.bind(this);
@@ -30,7 +30,7 @@ class ListCoursesComponent extends Component {
 
   deleteCourseClicked(id) {
     CourseDataService.deleteCourse("lorem ipsum", id)
-      .then(response =>{
+      .then(response => {
         this.setState({ message: `Deleted course ${id}.` });
         this.refreshCourses();
       })
@@ -38,7 +38,7 @@ class ListCoursesComponent extends Component {
   }
 
   updateCourseClicked(id) {
-    console.log('update ' + id);
+    console.log("update " + id);
     this.props.history.push(`/courses/${id}`);
   }
 
@@ -50,11 +50,9 @@ class ListCoursesComponent extends Component {
     return (
       <div className="container">
         <h3>All Courses</h3>
-        { this.state.message &&
-          <div className="alert alert-success">
-            {this.state.message}
-          </div>
-        }
+        {this.state.message && (
+          <div className="alert alert-success">{this.state.message}</div>
+        )}
         <div className="container">
           <table className="table">
             <thead>
@@ -66,31 +64,28 @@ class ListCoursesComponent extends Component {
               </tr>
             </thead>
             <tbody>
-              {
-                this.state.courses.map(
-                  course =>
-                    <tr key={course.id}>
-                      <td>{course.id}</td>
-                      <td>{course.description}</td>
-                      <td>
-                        <button
-                          className="btn btn-success"
-                          onClick={() => this.updateCourseClicked(course.id)}
-                        >
-                          Update
-                        </button>
-                      </td>
-                      <td>
-                        <button
-                          className="btn btn-warning"
-                          onClick={() => this.deleteCourseClicked(course.id)}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                )
-              }
+              {this.state.courses.map(course => (
+                <tr key={course.id}>
+                  <td>{course.id}</td>
+                  <td>{course.description}</td>
+                  <td>
+                    <button
+                      className="btn btn-success"
+                      onClick={() => this.updateCourseClicked(course.id)}
+                    >
+                      Update
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-warning"
+                      onClick={() => this.deleteCourseClicked(course.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
