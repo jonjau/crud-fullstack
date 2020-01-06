@@ -30,17 +30,13 @@ class CourseComponent extends Component {
 
   onSubmit(values) {
     const username = "in28minutes";
-    const course = {
-      id: this.state.id,
-      description: this.state.description,
-      targetDate: values.targetDate
-    };
+    const course = values;
 
-    if (this.state.id === -1) {
+    if (course.id === -1) {
       CourseDataService.createCourse(username, course)
         .then(() => this.props.history.push('/courses'));
     } else {
-      CourseDataService.updateCourse(username, this.state.id, course)
+      CourseDataService.updateCourse(username, course.id, course)
         .then(() => this.props.history.push('/courses'));
     }
 

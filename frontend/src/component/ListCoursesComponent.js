@@ -22,7 +22,7 @@ class ListCoursesComponent extends Component {
   refreshCourses() {
     CourseDataService.retrieveAllCourses("lorem ipsum")
       .then(response => {
-        console.log(response);
+        console.log(response.data);
         this.setState({ courses: response.data });
       })
       .catch(error => console.log(error));
