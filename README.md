@@ -1,6 +1,6 @@
 # crud-fullstack
 
-A barebones CRUD application using Spring in the backend and
+A bare-bones CRUD application using Spring in the backend and
 React in the frontend.
 
 in /backend/:
